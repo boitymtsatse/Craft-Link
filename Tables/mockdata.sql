@@ -1,53 +1,53 @@
--- Insert data into User
-INSERT INTO User (First_Name, Last_Name, Date_of_Birth, ID_no, User_password, Phone_no, Email)
+-- Insert data into User table
+INSERT INTO User (First_Name, Last_Name, Date_of_Birth, ID_no, User_password, Phone_no, Email, Profile_Pic)
 VALUES
-('John', 'Doe', '1985-02-15', 8502151234085, 'password123', '0712345678', 'john.doe@example.com'),
-('Jane', 'Smith', '1990-07-10', 9007101234087, 'password456', '0823456789', 'jane.smith@example.com'),
-('Sipho', 'Khumalo', '1975-04-20', 7504201234089, 'password789', '0834567890', 'sipho.khumalo@example.com'),
-('Nandi', 'Zulu', '1988-09-25', 8809251234091, 'password012', '0845678901', 'nandi.zulu@example.com'),
-('Lerato', 'Mokoena', '1993-11-30', 9311301234093, 'password345', '0856789012', 'lerato.mokoena@example.com');
+('John', 'Doe', '1990-01-01', 9001015800082, 'password123', '0723456789', 'john.doe@example.com', NULL),
+('Jane', 'Smith', '1985-05-15', 8505154900081, 'password456', '0832345678', 'jane.smith@example.com', NULL),
+('Thabo', 'Mokoena', '1978-10-23', 7810235600085, 'password789', '0741234567', 'thabo.mokoena@example.com', NULL),
+('Naledi', 'Khoza', '1992-12-02', 9212025200083, 'password321', '0762345678', 'naledi.khoza@example.com', NULL),
+('Sipho', 'Ngubane', '1980-03-11', 8003115700080, 'password654', '0823456789', 'sipho.ngubane@example.com', NULL);
 
--- Insert data into User_Address
+-- Insert data into User_Address table
 INSERT INTO User_Address (Street_no, Street_name, Suburb, City, Postal_code, Province, User_ID)
 VALUES
-(123, 'Main Street', 'Sandton', 'Johannesburg', 2196, 'Gauteng', 1),
-(456, 'Church Street', 'Morningside', 'Durban', 4001, 'KwaZulu-Natal', 2),
-(789, 'Beach Road', 'Sea Point', 'Cape Town', 8005, 'Western Cape', 3),
-(101, 'Voortrekker Road', 'Bellville', 'Cape Town', 7530, 'Western Cape', 4),
-(202, 'Nelson Mandela Drive', 'Mahikeng', 'Mahikeng', 2745, 'North West', 5);
+(10, 'Main Street', 'Sandton', 'Johannesburg', 2196, 'Gauteng', 1),
+(45, 'Church Street', 'Mowbray', 'Cape Town', 7700, 'Western Cape', 2),
+(78, 'Nelson Mandela Drive', 'Sunnyside', 'Pretoria', 0002, 'Gauteng', 3),
+(23, 'Victoria Road', 'Woodstock', 'Cape Town', 7925, 'Western Cape', 4),
+(56, 'Rivonia Road', 'Rivonia', 'Johannesburg', 2128, 'Gauteng', 5);
 
--- Insert data into Service_Profile
+-- Insert data into Service_Profile table
 INSERT INTO Service_Profile (Service_title, Rating, Service_Description, User_ID)
 VALUES
-('Kasi Upholstery', 4, 'High-quality upholstery services.', 1),
-('House Cleaning', 5, 'Thorough and professional house cleaning.', 2),
-('Garden Maintenance', 3, 'Expert garden maintenance and landscaping.', 3),
-('Plumbing Services', 4, 'Reliable and efficient plumbing solutions.', 4),
-('Electrical Repairs', 5, 'Professional electrical repair services.', 5);
+('Plumbing', 5, 'Residential and commercial plumbing services', 1),
+('Electrician', 4, 'Electrical installations and repairs', 2),
+('Gardening', 3, 'Garden maintenance and landscaping', 3),
+('Cleaning', 4, 'Home and office cleaning services', 4),
+('Tutoring', 5, 'Private tutoring in various subjects', 5);
 
--- Insert data into Billing
+-- Insert data into Billing table
 INSERT INTO Billing (Acc_no, Amount, Billing_Date, Address_ID, Service_ID, User_ID)
 VALUES
-(1001, '1500.00', '2024-01-15', 1, 1, 1),
-(1002, '2000.00', '2024-02-20', 2, 2, 2),
-(1003, '1200.00', '2024-03-25', 3, 3, 3),
-(1004, '1800.00', '2024-04-30', 4, 4, 4),
-(1005, '2200.00', '2024-05-05', 5, 5, 5);
+(123456789, '500', '2023-01-10', 1, 1, 1),
+(987654321, '750', '2023-02-15', 2, 2, 2),
+(123987456, '600', '2023-03-20', 3, 3, 3),
+(789123456, '450', '2023-04-25', 4, 4, 4),
+(456789123, '800', '2023-05-30', 5, 5, 5);
 
--- Insert data into Analytics
+-- Insert data into Analytics table
 INSERT INTO Analytics (Service_ID, Income, Billing_ID, Profile_views, Places_worked, Hire)
 VALUES
-(1, '1500.00', 1, 50, 'Johannesburg', 10),
-(2, '2000.00', 2, 70, 'Durban', 15),
-(3, '1200.00', 3, 30, 'Cape Town', 8),
-(4, '1800.00', 4, 60, 'Cape Town', 12),
-(5, '2200.00', 5, 80, 'Mahikeng', 20);
+(1, '5000', 1, 150, 'Sandton, Randburg, Rosebank', 10),
+(2, '7500', 2, 200, 'Mowbray, Rondebosch, Claremont', 15),
+(3, '6000', 3, 100, 'Sunnyside, Arcadia, Hatfield', 8),
+(4, '4500', 4, 120, 'Woodstock, Observatory, Salt River', 12),
+(5, '8000', 5, 180, 'Rivonia, Sunninghill, Bryanston', 20);
 
--- Insert data into Review
+-- Insert data into Review table
 INSERT INTO Review (User_ID, Service_ID, Review_Date, Review_Content, Star_Rating)
 VALUES
-(1, 1, '2024-01-20', 'Excellent service!', 5),
-(2, 2, '2024-02-25', 'Very satisfied with the cleaning.', 4),
-(3, 3, '2024-03-30', 'Good job on the garden.', 4),
-(4, 4, '2024-04-05', 'Plumbing work was great.', 5),
-(5, 5, '2024-05-10', 'Electrical repairs were professional.', 5);
+(1, 1, '2023-06-01', 'Excellent plumbing service, highly recommended!', 5),
+(2, 2, '2023-06-15', 'Professional and efficient electrician.', 4),
+(3, 3, '2023-07-05', 'Good gardening service but a bit pricey.', 3),
+(4, 4, '2023-07-20', 'Great cleaning service, very thorough.', 4),
+(5, 5, '2023-08-01', 'Fantastic tutoring, my child improved a lot.', 5);

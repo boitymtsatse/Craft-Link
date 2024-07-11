@@ -1,5 +1,5 @@
 -- create database DBtables;
--- use DBtables;
+use DBtables;
 -- drop database DBtables;
 
 -- User table
@@ -13,6 +13,7 @@ CREATE TABLE User
     ID_no VARCHAR(30) NOT NULL,
     User_password varchar(100) NOT NULL,
     Phone_no varchar(10) NOT NULL,
+    Profile_Pic BLOB,
     Email VARCHAR(100),
     CONSTRAINT user_email UNIQUE (Email),
     CONSTRAINT email_format CHECK (Email LIKE '%@%.%')
