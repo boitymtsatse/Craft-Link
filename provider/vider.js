@@ -45,6 +45,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    
+    // Calendar for Service 1
+    const calendarEl1 = document.getElementById('calendarService1');
+    const calendar1 = new FullCalendar.Calendar(calendarEl1, {
+        initialView: 'dayGridMonth',
+        events: [
+            {
+                title: 'Booking 1',
+                start: '2024-07-01',
+                end: '2024-07-03'
+            },
+            {
+                title: 'Booking 2',
+                start: '2024-07-07',
+                allDay: true
+            },
+            // Additional bookings can be added here
+        ]
+    });
+
+    // Show calendar when button is clicked
+    document.querySelector('.booking-button').addEventListener('click', () => {
+        calendarEl1.style.display = 'block';
+        calendar1.render();
+    });
 });
+
 
