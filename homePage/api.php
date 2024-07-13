@@ -35,24 +35,50 @@
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-        if(isset($data['type']) && $data['type'] == "getProfiles" && !isset($data['password']) && !isset($data['email']) && !isset($data['surname'])){
-            $sql = "SELECT First_Name, Last_Name, Profile_Pic FROM USER where user_id IN SELECT user_id FROM SERVICE_PROFILE";
-            $stmt = $this->con->prepare($sql);
-            if($stmt->execute()){
+        $sql = "";
 
-                $result = $stmt->get_result();
-                $profiles = array();
-
-                while ($row = $result->fetch_assoc()) {
-                    $profiles[] = $row;
-                }
-
-                if(count($listings) > 0) {
-                }
-            }
+        if(isset($data['type']) && $data['type'] == "getProfiles"){
+            $sql = "SELECT USER.*, SERVICE_PROFILE.* 
+            FROM USER 
+            JOIN SERVICE_PROFILE 
+            ON USER.user_id = SERVICE_PROFILE.user_id";
+        }
+        else if(isset($data['type']) && $data['type'] == "getInfo")
+        {
+            $sql = "SELECT First_Name, Last_Name, Profile_Pic, Service_Description FROM USER where user_id IN SELECT user_id,Service_Description FROM SERVICE_PROFILE";
         }
 
+        $stmt = $craftlink->con->prepare($sql);
+        if($stmt->execute()){
+
+            $result = $stmt->get_result();
+            $profiles = array();
+
+            while ($row = $result->fetch_assoc()) {
+                $profiles[] = $row;
+            }
+
+            $status = "success";
+                $timestamp = time(); 
+                $data = $profiles;
+        }
+        else
+        {
+            $status = "error";
+            $timestamp = time(); 
+            $data = 'No profiles found';
+        }
+
+        $returnObject = array(
+            "status" => $status,
+            "timestamp" => $timestamp,
+            "data" => $data
+            );
+
+        echo(json_encode($returnObject));
     }
 
 
 ?>
+
+
