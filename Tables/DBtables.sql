@@ -1,5 +1,5 @@
 -- create database DBtables;
-use DBtables;
+-- use DBtables;
 -- drop database DBtables;
 
 -- User table
