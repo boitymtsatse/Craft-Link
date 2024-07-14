@@ -6,8 +6,6 @@
     <title>Service Provider</title>
     <link rel="stylesheet" href="prov.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
 </head>
 <body>
     <header>
@@ -22,32 +20,14 @@
     
     <section id="location">
         <h2>Location</h2>
-        <p>153 Jabulani Street, Orlando East Ext 5, Soweto</p>
+        <p>153 Jabulani Street, Orlando East Ext 5, Soweto</p> 
     </section>
     
     <section id="services">
         <h2>Services</h2>
-        <div class="service-card">
-            <h3>Kasi Upholstery</h3>
-            <p class="description">Service Description</p>
-            <div class="rating">Rating: ⭐⭐⭐⭐</div>
-            <p class="rate">Rate: Inquire for quotation</p>
-            <p class="times">Operating Times: 9 AM - 5 PM</p>
-            <p class="location">Location: 153 Jabulani Street, Orlando East Ext 5, Soweto</p>
-            <div class="analytics">
-                <h4>Analytics</h4>
-                <canvas id="analyticsService1"></canvas>
-            </div>
-            <div class="calendar">
-                <h4>Calendar Bookings</h4>
-                <div id="calendarService1"></div>
-            </div>
-            <button class="booking-button">Check Bookings</button>
-        </div>
-        <!-- other services -->
+        <div id="service-list"></div>
     </section>
     
     <script src="vider.js"></script>
 </body>
 </html>
-
