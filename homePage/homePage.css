@@ -20,6 +20,10 @@
 
 .details{
 
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    padding: 10px;
     margin-top: 3%; 
     float:right;
     margin-right: 5%;
@@ -35,10 +39,13 @@
 
 .details p{
     text-align: center;
+    /* flex: 1; */
+    
 }
 
-.hire{
-    margin-top: 0;
+button{
+
+    margin-bottom: 20px;
     float: right;
     width: 25%;
     height: 20%;
@@ -57,6 +64,7 @@
 .resultsBar{
     text-align: center;
 }
+
 footer{
     height:20vh;
     width:100vw;

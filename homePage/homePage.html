@@ -1,12 +1,18 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="homePage.css">
+    <script src="homePage.js"></script>
+    <title>Service Finder</title>
 </head>
 <body>
-    <input placeholder="Search here..." class="searchBar">
-    </input>
+    <input id="searchBar" placeholder="Search here..." class="searchBar" oninput="filterProfiles()">
+    <button onclick="getLocation()">Find Services Near Me</button>
     <div class="resultsBar">
         <h2>Results for "Near me..."</h2>
+        <p id="location-status">Fetching location...</p>
     </div>
     <div class="profiles">
         <img src="profilePic.jpg" class="profilePic">
@@ -14,50 +20,50 @@
             <h2>Plumbing</h2>
             <p>
                 Name: Rethabile Bore
-                <br></br>
-                Experience: 3 months
-                <br></br>
+                <br><br>
+                Description: Exceptional plumbing services
+                <br><br>
                 Rate per hour: R50
-                <br></br>
+                <br><br>
                 Rating: &#9733;&#9733; (9)
+                <br>
+                <button class="hire" onclick="homeRedirect()">HIRE</button>
             </p>
-            <button class="hire">HIRE</button>
         </div>
     </div>
-    <br></br>
+    <br>
     <div class="profiles">
         <img src="profilePic.jpg" class="profilePic">
         <div class="details">
             <h2>Gardening</h2>
             <p>
                 Name: Boitumelo Mtsatse
-                <br></br>
+                <br>
                 Contact: 077 853 6785
-                <br></br>
+                <br>
                 Experience: 5 years
-                <br></br>
+                <br>
                 Rating: &#9733;&#9733;&#9733;&#9733; (40)
             </p>
         </div>
     </div>
-    <br></br>
+    <br>
     <div class="profiles">
         <img src="profilePic.jpg" class="profilePic">
         <div class="details">
             <h2>Roofing</h2>
             <p>
                 Name: Paballo Diyase
-                <br></br>
+                <br>
                 Contact: 077 853 6785
-                <br></br>
+                <br>
                 Experience: 10 years
-                <br></br>
+                <br>
                 Rating: &#9733;&#9733;&#9733; (12)
             </p>
         </div>
     </div>
-    <br></br>
-    <footer>
-
-    </footer>
+    <br>
+    <footer></footer>
 </body>
+</html>

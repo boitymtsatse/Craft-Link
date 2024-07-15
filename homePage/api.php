@@ -38,17 +38,29 @@
         $sql = "";
 
         if(isset($data['type']) && $data['type'] == "getProfiles"){
+            $sql = "SELECT USER.First_Name, Last_Name, Profile_pic, SERVICE_PROFILE.
+            FROM USER 
+            JOIN SERVICE_PROFILE 
+            ON USER.user_id = SERVICE_PROFILE.user_id";
+            $stmt = $craftlink->con->prepare($sql);
+        }
+        else if(isset($data['type']) && $data['type'] == "getInfo")
+        {
             $sql = "SELECT USER.*, SERVICE_PROFILE.* 
             FROM USER 
             JOIN SERVICE_PROFILE 
             ON USER.user_id = SERVICE_PROFILE.user_id";
+            $stmt = $craftlink->con->prepare($sql);
         }
-        else if(isset($data['type']) && $data['type'] == "getInfo")
-        {
-            $sql = "SELECT First_Name, Last_Name, Profile_Pic, Service_Description FROM USER where user_id IN SELECT user_id,Service_Description FROM SERVICE_PROFILE";
+        else if(isset($data['type']) && $data['type'] == "searchBar" && isset($data['search'])){
+
+            $param = $data['search'];
+            $sql = "SELECT First_Name, Last_Name, Profile_Pic, Service_Description FROM USER where user_id IN (SELECT user_id,Service_Description FROM SERVICE_PROFILE WHERE Service_title like %?%)";
+            $stmt->bind_param("s", $param);
+            $stmt = $craftlink->con->prepare($sql);
+
         }
 
-        $stmt = $craftlink->con->prepare($sql);
         if($stmt->execute()){
 
             $result = $stmt->get_result();
