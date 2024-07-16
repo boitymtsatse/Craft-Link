@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ServiceForm.css";
-import axios from "axios";
-import Button from "../Button";
+// import axios from "axios";
+import Button from "./Button";
 
 const AddService = () => {
   const onClick =(e)=>{
@@ -9,7 +9,7 @@ const AddService = () => {
     console.log("click")
   }
 
-  // const url = "";
+  // // const url = "";
   const [data, setData] = useState({
     img:"",
     name: "",
