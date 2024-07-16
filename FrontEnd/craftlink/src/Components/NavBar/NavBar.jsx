@@ -6,22 +6,22 @@ const Navbar = () => {
   return (
     <>
     <nav className="navbar">
-      <Link to href="#" className="navbar-brand">
+      <Link to="/" className="navbar-brand">
         Logo
       </Link>
       <ul className="navbar-nav">
         <li>
-          <Link to href="/">Home</Link>
+          <Link to ="#">Home</Link>
         </li>
         <li>
           <Link to ="/services">Services</Link>
         </li>
         <li>
-          <Link to href="#"></Link>
+          <Link to ="#">About</Link>
         </li>
       </ul>
     </nav>
-    
+  
     </>
   )
 };

@@ -6,8 +6,8 @@ import ServiceForm from './Components/Services/ServiceForm';
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <ServiceForm/>
+      {/* <Navbar /> */}
+      {/* <ServiceForm/> */}
     </div>
   );
 };

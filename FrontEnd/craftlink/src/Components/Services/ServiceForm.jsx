@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ServiceForm.css";
 // import axios from "axios";
-import Button from "./Button";
+import Button from "../Button";
 
 const AddService = () => {
   const onClick =(e)=>{
