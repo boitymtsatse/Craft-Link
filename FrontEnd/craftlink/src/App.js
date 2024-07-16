@@ -1,20 +1,19 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Navbar from './Components/NavBar/NavBar';
-import Home from './Components/HomePage/App';
-import Hire from './Components/HomePage/hirePage';
-import Landing from './Components/LandingPage/loginPage';
+import Navbar from './components/NavBar/NavBar';
+import Home from './components/HomePage/homePage';
+import Hire from './components/HomePage/hirePage';
+import Landing from './components/LandingPage/loginPage';
 
 const App = () => {
   return (
     <Router>
       <div>
-        <Navbar />
-        {/* <HomePage /> */}
+        <Navbar/>
         <Routes>
           <Route path="/" element={<Landing/>}/>
           <Route path="/home" element={<Home/>}/>
-          <Route path="/hire" element={<Hire/>}/>
+          <Route path="/hire/:id" element={<Hire/>}/>
           </Routes>
       </div>
     </Router>
