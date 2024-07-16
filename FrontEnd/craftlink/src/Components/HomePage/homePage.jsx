@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import './homePage.css';
-import HirePage from './hirePage'; 
+// import HirePage from './hirePage'; 
 
 
 function App() {
@@ -36,9 +37,9 @@ function App() {
     },
   ]);
 
-  const homeRedirect = () => {
-    <HirePage/>
-  };
+  // const homeRedirect = () => {
+  //   <HirePage/>
+  // };
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -105,7 +106,7 @@ function App() {
               {profile.contact && <><br /><br />Contact: {profile.contact}</>}
               {profile.experience && <><br /><br />Experience: {profile.experience}</>}
               <br /><br />Rating: {profile.rating}
-              {profile.type === 'Plumbing' && <button className="hire" onClick={homeRedirect}>HIRE</button>}
+              {profile.type === 'Plumbing' && <Link to="/hire" className="hire">HIRE</Link>}
             </p>
           </div>
         </div>

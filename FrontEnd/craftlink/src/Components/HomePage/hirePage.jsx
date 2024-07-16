@@ -1,11 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 import './hirePage.css';
 
 function HirePage() {
-  const homeRedirect = () => {
-    window.location.href = './hirePage.html'; // Adjust this path according to your routing setup
-  };
-
   return (
     <div className="details">
       <h2>Plumbing</h2>
@@ -18,7 +15,6 @@ function HirePage() {
         <br />
         Rating: &#9733;&#9733; (9)
         <br />
-        <button className="hire" onClick={homeRedirect}>HIRE</button>
       </p>
     </div>
   );
