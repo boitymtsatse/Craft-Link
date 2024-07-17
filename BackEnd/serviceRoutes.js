@@ -17,9 +17,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Route to add service
-router.post('/add', upload.single('img'), (req, res, next) => {
-  req.body.img = req.file ? req.file.path : '';
-  next();
-}, addService);
+router.post('/add',addService);
 
 module.exports = router;
+
+// router.post('/add', upload.single('img'), (req, res, next) => {
+//   req.body.img = req.file ? req.file.path : '';
+//   // next();
+// }, addService);

@@ -1,10 +1,12 @@
 
-const userModel = require('./ServiceModel');
+const serviceModel = require('./ServiceModel');
+
 const addService = async (req, res) => {
+
     const { img, name, service, skills, exp, description, rate } = req.body;
     //find in db
     try {
-      let serviceName = await userModel.findOne({ name });
+      let serviceName = await serviceModel.findOne({ name });
   
       if (serviceName) return res.status(400).json("This name is taken.");
   
@@ -13,7 +15,7 @@ const addService = async (req, res) => {
   
       
   
-      newService = new userModel({ name, email, password });
+      newService = new serviceModel({ img, name, service, skills, exp, description, rate });
   
       
   
