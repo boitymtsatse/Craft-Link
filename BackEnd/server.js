@@ -95,7 +95,7 @@ function getUser(req, res) {
 }
 
 function deleteUser(req, res) {
-  const user_id = 12;
+  const user_id = 11;
   db.query('DELETE FROM User_Address WHERE User_ID = ?', [user_id], (error, results) => {
     if (error) {
       return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
@@ -108,6 +108,7 @@ function deleteUser(req, res) {
     }
     res.json({ status: "success", timestamp: Date.now(), data: "user deleted from database" });
   });
+  req.session.destroy();
 }
 
 function logout(req, res) {
@@ -321,14 +322,14 @@ function history(req, res) {
 //   });
 // }
 function signUp(req, res) {
-  const { fname, surname, id_number, dob, phone, email, password, street_name, street_no, suburb, city, province, postal_code } = req.body;
+  const { fname, surname, id_number, dob, phone, email, password, street_name, street_no, suburb, city, province, postal_code,pp } = req.body;
 
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!emailPattern.test(email)) {
     return res.status(400).json({ status: "error", timestamp: Date.now(), data: "invalid email address" });
   }
 
-  // Check if ID number is already in use
+  // Check if ID number is already in use////valid???
   db.query('SELECT COUNT(*) AS count FROM User WHERE ID_no =?', [id_number], (error, results) => {
     if (error) {
       return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
@@ -358,8 +359,8 @@ function signUp(req, res) {
         // Proceed with user creation
         const hashedPassword = require('crypto').createHash('sha256').update(password).digest('hex');
 
-        const sqlUser = 'INSERT INTO User (ID_no, First_Name, Last_Name, Date_of_Birth, Phone_no, Email, User_password) VALUES (?,?,?,?,?,?,?)';
-        const userValues = [id_number, fname, surname, dob, phone, email, hashedPassword];
+        const sqlUser = 'INSERT INTO User (ID_no, First_Name, Last_Name, Date_of_Birth, Phone_no, Email, User_password,Profile_Pic) VALUES (?,?,?,?,?,?,?,?)';
+        const userValues = [id_number, fname, surname, dob, phone, email, hashedPassword,pp];
 
         db.query(sqlUser, userValues, (error, results) => {
           if (error) {
