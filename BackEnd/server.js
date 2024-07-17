@@ -5,8 +5,6 @@ const session = require('express-session');
 const mysql = require('mysql');
 const cors = require('cors'); // Uncomment this line if you need CORS
 
-
-
 const app = express();
 const port = 3000;
 app.use(cors());
