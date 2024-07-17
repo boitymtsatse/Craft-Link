@@ -1,11 +1,10 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Navbar from './components/NavBar/NavBar.jsx';
-import Home from './components/HomePage/homePage';
-import Hire from './components/HomePage/hirePage';
-import Landing from './components/LandingPage/LoginPage.jsx';
+import Navbar from './Components/NavBar/NavBar';
+import Home from './Components/HomePage/homePage';
+import Hire from './Components/HomePage/hirePage';
+// import Landing from './components/LandingPage/LoginPage.jsx';
 import Settings from './Components/Profile/settings';
 import Profile from './Components/Profile/profile';
 import Password from './Components/Profile/password';
@@ -38,19 +37,10 @@ const App = () => {
           <Route path="/signup" element={<SignUp />}/> {/* Corrected component name */}
           <Route path="/login" element={<Login />}/>
           <Route path="/" element={<Welcome />}/>
-          <Route path="/home" element={<Homepage />}/>
-          {/* Add other routes here */}
-        </Routes>
-      </div>
-    </Router>
-    <Router>
-      <div>
-        <Navbar/>
-        <Routes>
-          <Route path="/" element={<Landing/>}/>
           <Route path="/home" element={<Home/>}/>
           <Route path="/hire/:id" element={<Hire/>}/>
-          </Routes>
+          {/* Add other routes here */}
+        </Routes>
       </div>
     </Router>
   );

@@ -1,23 +1,29 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const session = require('express-session');
 const mysql = require('mysql2');
+// Middleware
 
 const app = express();
 const port = 3001;
-
-// Middleware
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json()); // Make sure this is above your routes
 
-// MySQL connection
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Naturalscience1', 
-    database: 'CraftLink'
+app.use(session({
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true
+}));
+
+const db = mysql.createConnection({
+  host: 'wheatley.cs.up.ac.za',
+  user: 'u23684365',
+  password: 'WZRJBWGIQ7LVZYJTWTBHWAI7EB5ZNWRP',
+  database: 'u23684365_CraftLink'
 });
 
-connection.connect(error => {
+db.connect(error => {
     if (error) {
         console.error('Error connecting to MySQL:', error);
         return;
@@ -32,49 +38,48 @@ app.post('/api', (req, res) => {
     let param;
 
     if (data.type === 'getProfiles') {
-        sql = `SELECT USER.First_Name, Last_Name, Profile_pic, SERVICE_PROFILE.*
-               FROM USER 
-               JOIN SERVICE_PROFILE 
-               ON USER.user_id = SERVICE_PROFILE.user_id`;
+        sql = `SELECT User.First_Name, Last_Name, Service_Profile.* 
+        FROM User JOIN Service_Profile 
+        ON User.user_id = Service_Profile.user_id`;
         param = '';
     } else if (data.type === 'getInfo' && data.id){
 
         param = `${data.id}`;
-        sql = `SELECT USER.*, SERVICE_PROFILE.* 
-            FROM USER 
-            JOIN SERVICE_PROFILE 
-            ON USER.user_id = SERVICE_PROFILE.user_id
-            WHERE USER.user_id = ?`;
+        sql = `SELECT User.*, Service_Profile.* 
+            FROM User
+            JOIN Service_Profile
+            ON User.user_id = Service_Profile.user_id
+            WHERE User.user_id = ?`;
 
     } else if (data.type === 'searchBar' && data.search) {
 
         param = `%${data.search}%`;
-        sql = `SELECT USER.First_Name, Last_Name, Profile_pic, SERVICE_PROFILE.*
-                FROM USER 
-                JOIN SERVICE_PROFILE 
-                ON USER.user_id = SERVICE_PROFILE.user_id
-                WHERE SERVICE_PROFILE.Service_title LIKE ?
+        sql = `SELECT User.First_Name, Last_Name, Profile_pic, Service_Profile.*
+                FROM User 
+                JOIN Service_Profile 
+                ON User.user_id = Service_Profile.user_id
+                WHERE Service_Profile.Service_title LIKE ?
                `;
     } else if (data.type === 'getNearby' && data.location) {
 
         param = `%${data.location}%`;
         sql = `SELECT 
-            USER.First_Name, 
-            USER.Last_Name, 
-            USER.Profile_pic, 
-            SERVICE_PROFILE.*, 
-            USER_ADDRESS.*
+            User.First_Name, 
+            User.Last_Name, 
+            User.Profile_pic, 
+            Service_Profile.*, 
+            User_Address.*
             FROM 
-                USER 
+                User 
             JOIN 
-                SERVICE_PROFILE 
+                Service_Profile 
             ON 
-                USER.user_id = SERVICE_PROFILE.user_id 
+                User.user_id = Service_Profile.user_id 
             JOIN 
-                USER_ADDRESS 
+                User_Address 
             ON 
-                SERVICE_PROFILE.user_id = USER_ADDRESS.user_id
-            WHERE USER_ADDRESS.City LIKE ?`;
+                Service_Profile.user_id = User_Address.user_id
+            WHERE User_Address.City LIKE ?`;
     
     } else {
         return res.json({
@@ -84,7 +89,7 @@ app.post('/api', (req, res) => {
         });
     }
 
-    connection.query(sql, [param], (error, results) => {
+    db.query(sql, [param], (error, results) => {
         if (error) {
             return res.status(500).json({
                 status: 'error',
