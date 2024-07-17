@@ -1,9 +1,9 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Navbar from './components/NavBar/NavBar';
+import Navbar from './components/NavBar/NavBar.jsx';
 import Home from './components/HomePage/homePage';
 import Hire from './components/HomePage/hirePage';
-import Landing from './components/LandingPage/loginPage';
+import Landing from './components/LandingPage/LoginPage.jsx';
 
 const App = () => {
   return (
