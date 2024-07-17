@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User History</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+  <h1>User History</h1>
+  
+  
+  <section>
+  
+    <label>Role:</label>
+    <select id="role-filter">
+      <option value="all">All</option>
+      <option value="client">Client</option>
+      <option value="service-provider">Service Provider</option>
+    </select>
+    <label>Type:</label>
+    <select id="type-filter">
+      <option value="all">All</option>
+      <option value="job">Job</option>
+      <option value="payment">Payment</option>
+      <option value="review">Review</option>
+    </select>
+    <button class = "button" id="apply-filter">Apply Filter</button>
+  </section>
+  
+  <!-- History table -->
+  <section>
+   
+    <table class="table" id="history-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody id="history-table-body">
+        <!-- History items will be displayed here -->
+      </tbody>
+    </table>
+  </section>
+
+  <script>
+    // Add JavaScript code here to populate the history table and handle filter changes
+  </script>
+</body>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+  <h1>User Settings</h1>
+  <section>
+    <h2>Account Information</h2>
+    <!-- <p>View your profile information and make changes as needed.</p> -->
+    <button class="button" onclick="window.location.href='profile.html'">View Profile</button>
+  </section>
+  <section>
+    <h2>History</h2>
+    <!-- <p>View your activity history on our website.</p> -->
+    <button class="button" onclick="window.location.href='history.html'" >History</button>
+  </section>
+  <section>
+    <h2>Add a Service</h2>
+    <!-- <p>Add a new service to your account.</p> -->
+    <button class="button" onclick="window.location.href='service.html'">Add a Service</button>
+  </section>
+  <!-- <section>
+    <h2>Delete Account</h2>
+    <p>Delete your account permanently.</p>
+    <button class="button" onclick="openDeleteConfirmationModel()">Delete Account</button>
+
+    <div id="deleteConfirmationModel" class="model" style="display: none;">
+        <div class="model-content">
+            <h2>Are you sure you want to delete your account?</h2>
+            <button id="confirmDeleteButton">Yes</button>
+            <button onclick="closeDeleteConfirmationModel()">Cancel</button>
+        </div>
+    </div>
+  </section> -->
+  <section>
+    <h2>Delete Account</h2>
+    <p>Delete your account permanently.</p>
+    <button class="button" onclick="openDeleteConfirmationModel()">Delete Account</button>
+
+    <div id="deleteConfirmationModel" class="model" style="display: none;">
+        <div class="model-content">
+            <h2>Are you sure you want to delete your account?</h2>
+            <button id="confirmDeleteButton">Yes</button>
+            <button onclick="closeDeleteConfirmationModel()">Cancel</button>
+        </div>
+    </div>
+  </section>
+</body>
+</html>

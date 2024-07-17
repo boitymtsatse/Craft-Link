@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ServiceForm.css";
 import axios from "axios";
-import Button from "../Button";
+//import Button from "../Button";
 
 const AddService = () => {
   const onClick =(e)=>{
@@ -111,9 +111,9 @@ const AddService = () => {
           />
         </div>
       </div>
-      <div className="Submit">
+      {/* <div className="Submit">
         <Button color="green" text="Submit" onClick={onClick}></Button>
-      </div>
+      </div> */}
       
     </form>
   );
