@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ServiceForm.css";
-// import axios from "axios";
+import axios from "axios";
 import Button from "../Button";
 
 const AddService = () => {
@@ -33,21 +33,21 @@ const AddService = () => {
   const onClick = async (e) => {
     e.preventDefault();
     
-    // const formData = new FormData();
-    // for (let key in data) {
-    //   formData.append(key, data[key]);
-    // }
+    const formData = new FormData();
+    for (let key in data) {
+      formData.append(key, data[key]);
+    }
 
-    // try {
-    //   const response = await axios.post('http://localhost:5000/api/service', formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data'
-    //     }
-    //   });
-    //   console.log(response.data);
-    // } catch (error) {
-    //   console.error('Error uploading data:', error);
-    // }
+    try {
+      const response = await axios.post('http://localhost:5000/api/service/add', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error uploading data:', error);
+    }
   };
 
   return (

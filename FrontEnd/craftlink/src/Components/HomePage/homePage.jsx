@@ -37,7 +37,7 @@ function App() {
   ]);
 
   const homeRedirect = () => {
-    <HirePage/>
+    // <HirePage/>
   };
 
   const getLocation = () => {
