@@ -1,9 +1,11 @@
-body {
+html{
+  overflow-x: hidden;
+}
+
+.homeBody{
   overflow-x: hidden; /* Hide scroll bars */
   font-family: 'Arial', sans-serif;
   color: #000; /* Black text */
-  margin: 0;
-  padding: 0;
   background-image: url("https://img.freepik.com/premium-vector/assorted-hand-tools-pattern-white-background_450837-98.jpg");
   /* background-repeat: repeat-y; */
   background-size: 357px;
