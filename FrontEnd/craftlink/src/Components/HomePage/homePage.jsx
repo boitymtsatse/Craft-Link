@@ -7,19 +7,14 @@ function App() {
   const [cityQuery, setCityQuery] = useState('');
   const [profiles, setProfiles] = useState([]);
 
-  useEffect(() => {fetchProfiles();
-  }, []);
+  useEffect(() => {fetchProfiles();}, []);
 
   const fetchProfiles = async () => {
     try {
       const response = await fetch('http://localhost:3001/api', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          type: 'getProfiles',
-        }),
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({type: 'getProfiles'}),
       });
       const result = await response.json();
       if (result.status === 'success') {
@@ -32,19 +27,14 @@ function App() {
     }
   };
 
-  let showResult = ''
+  let showResult = '';
 
   const fetchNearbyServices = async () => {
     try {
       const response = await fetch('http://localhost:3001/api', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          type: 'getNearby',
-          location: cityQuery
-        }),
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({type: 'getNearby', location: cityQuery}),
       });
       const result = await response.json();
       if (result.status === 'success') {
@@ -62,13 +52,8 @@ function App() {
     try {
       const response = await fetch('http://localhost:3001/api', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          type: 'searchBar',
-          search: searchQuery
-        }),
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({type: 'searchBar', search: searchQuery}),
       });
       const result = await response.json();
       if (result.status === 'success') {
@@ -98,7 +83,8 @@ function App() {
   return (
     <div>
       <br/><br/>
-      <div className='searchDiv' onChange={searchServices}><input
+      <div className='searchDiv' onChange={searchServices}>
+        <input
           id="searchBar"
           placeholder="Search services..."
           className="searchBar"
@@ -116,69 +102,34 @@ function App() {
           onChange={(e) => setCityQuery(e.target.value)}
         />
       </div>
-      {/* <button onClick={fetchNearbyServices}>Find Services Near Me</button> */}
       <div className="resultsBar">
         <h2>{showResult}</h2>
       </div>
-      {profiles.map((profile, index) => (
-        <div key={index} className="profiles">
-          <img src={profile.Profile_Pic} className="profilePic" alt="Profile" />
-          <div className="details">
-            <h2>{profile.Service_title}</h2>
-            <p>
-              Name: {profile.First_Name} {profile.Last_Name}
-              <br /><br />Service: {profile.Service_Description}
-              {profile.rate && <><br /><br />Rate per hour: {profile.rate}</>}
-              {profile.contact && <><br /><br />Contact: {profile.contact}</>}
-              {profile.experience && <><br /><br />Experience: {profile.experience}</>}
-              <br/><br/>Rating: {renderStars(parseInt(profile.Rating))} ({profile.Rating})
-              <br/><br/>
-              <button onClick={() => handleHire(profile.User_ID)} className="hire">
-                HIRE
-              </button>
-            </p>
+      <div className="profDiv">
+        {profiles.map((profile, index) => (
+          <div key={index} className="profiles">
+            <img src={profile.Profile_Pic} className="profilePic" alt="Profile" />
+            <div className="details">
+              <h2>{profile.Service_title}</h2>
+              <p>
+                Name: {profile.First_Name} {profile.Last_Name}
+                <br /><br />Service: {profile.Service_Description}
+                {profile.rate && <><br /><br />Rate per hour: {profile.rate}</>}
+                {profile.contact && <><br /><br />Contact: {profile.contact}</>}
+                {profile.experience && <><br /><br />Experience: {profile.experience}</>}
+                <br/><br/>Rating: {renderStars(parseInt(profile.Rating))} ({profile.Rating})
+                <br/><br/>
+                <button onClick={() => handleHire(profile.User_ID)} className="hire">
+                  HIRE
+                </button>
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
       <footer></footer>
     </div>
   );
 }
 
 export default App;
-
-// const getLocation = () => {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(showPosition, showError);
-//   } else {
-//     setLocationStatus('Geolocation is not supported by this browser.');
-//   }
-// };
-
-// const showPosition = (position) => {
-//   const latitude = position.coords.latitude;
-//   const longitude = position.coords.longitude;
-//   setLocationStatus(`Latitude: ${latitude}, Longitude: ${longitude}`);
-//   // Uncomment the following line if you want to automatically fetch nearby services
-//   // fetchNearbyServices(latitude, longitude);
-// };
-
-
-// const showError = (error) => {
-//   switch (error.code) {
-//     case error.PERMISSION_DENIED:
-//       setLocationStatus('User denied the request for Geolocation.');
-//       break;
-//     case error.POSITION_UNAVAILABLE:
-//       setLocationStatus('Location information is unavailable.');
-//       break;
-//     case error.TIMEOUT:
-//       setLocationStatus('The request to get user location timed out.');
-//       break;
-//     case error.UNKNOWN_ERROR:
-//       setLocationStatus('An unknown error occurred.');
-//       break;
-//     default:
-//       setLocationStatus('An unknown error occurred.');
-//   }
-// };
