@@ -117,7 +117,7 @@ function App() {
         {profiles.map((profile, index) => (
           <div key={index} className="profiles">
             <img src={profile.Profile_Pic} className="profilePic" alt="Profile" />
-            <div className="details">
+            <div className="homeDetails">
               <h2>{profile.Service_title}</h2>
               <p>
                 Name: {profile.First_Name} {profile.Last_Name}
@@ -125,8 +125,9 @@ function App() {
                 {profile.rate && <><br /><br />Rate per hour: {profile.rate}</>}
                 {profile.contact && <><br /><br />Contact: {profile.contact}</>}
                 {profile.experience && <><br /><br />Experience: {profile.experience}</>}
+                <br/><br/>Rate: R{profile.Rate_per_hour}/h
                 <br/><br/>Rating: {renderStars(parseInt(profile.Rating))} ({profile.Rating})
-                <br/><br/>
+                <br/>
                 <button onClick={() => handleHire(profile.User_ID)} className="hire">
                   HIRE
                 </button>

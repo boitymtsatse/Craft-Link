@@ -49,6 +49,8 @@ app.post('/api', (req, res) => {
             FROM User
             JOIN Service_Profile
             ON User.user_id = Service_Profile.user_id
+            JOIN User_Address 
+            ON Service_Profile.user_id = User_Address.user_id
             WHERE User.user_id = ?`;
 
     } else if (data.type === 'searchBar' && data.search) {

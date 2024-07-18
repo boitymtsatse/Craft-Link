@@ -24,7 +24,7 @@ html{
 }
 
 .Logo img{
-  width: 15%;
+  width: 20%;
   height: 100%;
   box-shadow: 2px 2px 8px black;
 
@@ -136,15 +136,15 @@ html{
   margin-top: 4%;
   height: 75%;
   /* padding-right: 15px; */
-  margin-right: 20px;
-  width: 25%;
+  margin-right: 10px;
+  width: 29%;
   border-radius: 25px;
   border: #3d046b solid 5px;
   vertical-align: middle;
   background-color: white;
 }
 
-.details {
+.homeDetails {
   display: flex;
   flex-direction: column;
   justify-content: justify;
@@ -162,12 +162,12 @@ html{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.details h2 {
+.homeDetails h2 {
   text-align: center;
   color: black;
 }
 
-.details p {
+.homeDetails p {
   text-align: center;
   color: black;
 }
@@ -187,7 +187,7 @@ html{
 }
 
 .hire:hover {
-  background-color: #8B4513; /* SaddleBrown background */
+  background-color: #7e2ae4; /* SaddleBrown background */
   color: #FFF; /* White text */
 }
 
