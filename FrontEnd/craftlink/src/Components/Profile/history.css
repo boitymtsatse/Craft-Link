@@ -1,9 +1,3 @@
-/* .SForm{
-    display: flex;
-    flex-direction: column;
-    margin-left:auto;
-} */
-
 /* profile.css */
 
 .SForm {
@@ -75,5 +69,72 @@
     .SForm button {
       font-size: 14px;
     }
+  }
+  
+  /* Additional styles for UserHistory component */
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 220px; /* Adjust based on the sidebar width */
+  }
+  
+  section {
+    margin-bottom: 20px;
+  }
+  
+  section label {
+    font-weight: bold;
+    color: #4b0082; /* Indigo color for labels */
+    margin-right: 10px;
+  }
+  
+  section select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #b19cd9; /* Lavender border */
+    margin-right: 10px;
+    background-color: #e6e6fa; /* Lavender background */
+    color: #4b0082; /* Indigo text color */
+  }
+  
+  section button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6a0dad; /* Dark purple background */
+    color: white;
+    cursor: pointer;
+  }
+  
+  section button:hover {
+    background-color: #5a0099; /* Slightly darker purple on hover */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid #b19cd9; /* Lavender border */
+    padding: 10px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #6a0dad; /* Dark purple background */
+    color: white;
+  }
+  
+  table td {
+    background-color: #f5f0ff; /* Light purple background */
+    color: #4b0082; /* Indigo text color */
   }
   

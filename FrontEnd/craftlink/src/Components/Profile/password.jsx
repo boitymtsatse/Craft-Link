@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SideBar from "./SideBar";
+import "./password.css";
 
 const Password = () => {
   const [formData, setFormData] = useState({
@@ -88,6 +90,7 @@ const Password = () => {
         </label>
         <button type="submit">Update Password</button>
       </form>
+      <SideBar/>
     </div>
   );
 };

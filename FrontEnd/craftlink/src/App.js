@@ -45,7 +45,8 @@ import Login from './Components/LandingPage/LoginPage';
 import SignUp from './Components/LandingPage/SignUp'; // Ensure this matches the file name and export
 import Welcome from './Components/LandingPage/Welcome';
 import Homepage from './Components/HomePage/homePage';
-
+import SideBar from './Components/Profile/SideBar';
+import Delete from './Components/Profile/delete';
 // New component for conditional rendering of Navbar
 const ConditionalNavbar = () => {
   const location = useLocation();
@@ -71,6 +72,7 @@ const App = () => {
           <Route path="/" element={<Welcome />}/>
           <Route path="/home" element={<Home/>}/>
           <Route path="/hire/:id" element={<Hire/>}/>
+          <Route path="/delete" element={<Delete/>}/>
           {/* Add other routes here */}
         </Routes>
       </div>

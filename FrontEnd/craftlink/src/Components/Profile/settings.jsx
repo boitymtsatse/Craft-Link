@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Profile from "./profile"
 import './settings.css';
+import SideBar from "./SideBar";
 
 const Settings = () => {
   const [isDeleteModelOpen, setIsDeleteModelOpen] = useState(false);
@@ -55,9 +56,10 @@ const Settings = () => {
             </li>
           </ul>
         </nav>
+        <SideBar/>
         <Profile/>
 
-        {/* <div className="content">
+        <div className="content">
           <h1>User Settings</h1>
           <section>
             <h2>Account Information</h2>
@@ -75,10 +77,10 @@ const Settings = () => {
             <h2>Update Password</h2>
             <Link to="/password" className="button">Update Password</Link>
           </section>
-          <section id="deleteAccountSection">
-            <h2>Delete Account</h2>
+           <section id="deleteAccountSection">
+             <h2>Delete Account</h2>
             <p>Delete your account permanently.</p>
-            <button className="button" onClick={openDeleteConfirmationModel}>Delete Account</button> */}
+            <button className="button" onClick={openDeleteConfirmationModel}>Delete Account</button>
 
             {isDeleteModelOpen && (
               <div id="deleteConfirmationModel" className="model">
@@ -89,7 +91,7 @@ const Settings = () => {
                 </div>
               </div>
             )}
-          {/* </section> */}
+          </section>
         </div>
       </div>
     // </div>
