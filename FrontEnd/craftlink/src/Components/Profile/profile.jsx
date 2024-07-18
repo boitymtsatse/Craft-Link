@@ -1,5 +1,5 @@
-
 import React, { useEffect, useState } from 'react';
+import './profile.css'
 
 const UserInfoPage = () => {
   const [formData, setFormData] = useState({
@@ -80,8 +80,8 @@ const UserInfoPage = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <form onSubmit={handleSubmit} style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '5px' }}>
+    <div >
+      <form className="SForm" onSubmit={handleSubmit} style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '5px' }}>
         <h2>Update User Information</h2>
         <label>
           Phone Number:

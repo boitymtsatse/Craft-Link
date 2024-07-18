@@ -48,19 +48,11 @@ function HirePage() {
       <h2>{profile.Service_title}</h2>
       <p>
         Name: {profile.First_Name} {profile.Last_Name}
-        <br />
-        {profile.Service_Description && (
-          <>
-            Description: {profile.Service_Description}
-            <br />
-          </>
-        )}
-        {profile.rate && (
-          <>
-            Rate per hour: {profile.rate}
-            <br />
-          </>
-        )}
+        <br/>
+          Description: {profile.Service_Description}
+        <br/>
+        Contact Details: {profile.Phone_no}
+        <br/>
         Rating: {renderStars(parseInt(profile.Rating))} ({profile.Rating})
         <br />
         {/* Add more profile details as needed */}

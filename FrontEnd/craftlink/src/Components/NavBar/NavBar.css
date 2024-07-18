@@ -1,13 +1,18 @@
 .navbar {
-    background-color:rgb(255, 255, 44);
+    background-color:rgb(24, 0, 58);
     padding: 1rem;
+    /* margin-left:3.5%; */
+    width:100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: black solid;
+    z-index:1;
   }
   
   .navbar-brand {
-    color:black;
+    font-weight:bolder;
+    color:white;
     text-decoration: none;
   }
   
@@ -23,7 +28,7 @@
   }
   
   .navbar-nav a {
-    color:black;
+    color:white;
     text-decoration: none;
   }
   

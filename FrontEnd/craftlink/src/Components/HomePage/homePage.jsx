@@ -18,6 +18,7 @@ function App() {
       });
       const result = await response.json();
       if (result.status === 'success') {
+        console.log(result.data);
         setProfiles(result.data);
       } else {
         console.error('Error fetching profiles:', result.data);
@@ -81,29 +82,36 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="homeBody">
+      <div className="Logo">
+        <img src="https://cdn.discordapp.com/attachments/1254932815963881514/1263469742019051550/image.png?ex=669a5964&is=669907e4&hm=1c9c4778b660632320000f1fae1d237725e6b173c5dda3b92aff378e343d9cc9&"></img>
+        <p>A platform for freelancers and semi-skilled labours to unleash their potential </p>
+      </div>
       <br/><br/>
-      <div className='searchDiv' onChange={searchServices}>
-        <input
-          id="searchBar"
-          placeholder="Search services..."
-          className="searchBar"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
+      <div className="searches">
+        <div className='searchDiv' onChange={searchServices}>
+          <input
+            id="searchBar"
+            placeholder="Search for services anywhere"
+            className="searchBar"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+        {/* <p id="cityPrompt">Enter your city to find people near you!</p> */}
+        <div onChange={fetchNearbyServices}>
+          <input
+            id="cityInput"
+            placeholder="Enter your city to find people near you!"
+            className="cityInput"
+            value={cityQuery}
+            onChange={(e) => setCityQuery(e.target.value)}
+          />
+        </div>
       </div>
-      <br/> Enter your city to find people near you!
-      <div onChange={fetchNearbyServices}>
-        <input
-          id="cityInput"
-          placeholder="Enter city..."
-          className="cityInput"
-          value={cityQuery}
-          onChange={(e) => setCityQuery(e.target.value)}
-        />
-      </div>
+      <br/><br/><br/>
       <div className="resultsBar">
-        <h2>{showResult}</h2>
+        <h2>Showing results for your city</h2>
       </div>
       <div className="profDiv">
         {profiles.map((profile, index) => (
@@ -127,7 +135,9 @@ function App() {
           </div>
         ))}
       </div>
-      <footer></footer>
+      <footer>
+        CraftLink@2024
+      </footer>
     </div>
   );
 }
