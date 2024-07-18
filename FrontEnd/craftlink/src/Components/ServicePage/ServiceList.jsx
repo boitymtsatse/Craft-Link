@@ -954,7 +954,7 @@ const ServiceList = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch('/api/services');
+        const response = await fetch('http://localhost:5000/services');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
