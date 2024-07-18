@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "craftlink",
   "version": "0.1.0",
   "private": true,
@@ -35,5 +36,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+=======
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+>>>>>>> 084bbae37f4a468a4f08e8caa8c79fa48982d1de
   }
 }

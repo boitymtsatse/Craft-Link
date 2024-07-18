@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to CraftLink</h1>
+    <p>Let's get you connected today!</p>
+  </section>
+
+  <!-- Login/Signup Section -->
+  <section class="login-signup">
+    <h2>Get Started</h2>
+    <form id="login-form">
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+      <button class ="button" id="login-btn">Login</button>
+    </form>
+    <p>Don't have an account? <a href="#" id="signup-link">Sign up</a></p>
+  </section>
+
+
+
+  <!-- Signup Modal (hidden by default) -->
+  <div class="modal" id="signup-modal">
+    <div class="modal-content">
+      <h2>Sign up</h2>
+      <form id="signup-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" required>
+        <button class ="button" id="signup-btn">Sign up</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Add JavaScript code here to handle login and signup functionality
+  </script>
+</body>
+</html>
