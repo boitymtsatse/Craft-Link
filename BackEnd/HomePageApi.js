@@ -38,7 +38,7 @@ app.post('/api', (req, res) => {
     let param;
 
     if (data.type === 'getProfiles') {
-        sql = `SELECT User.First_Name, Last_Name, Service_Profile.* 
+        sql = `SELECT User.First_Name, Last_Name, User.Profile_Pic, Service_Profile.* 
         FROM User JOIN Service_Profile 
         ON User.user_id = Service_Profile.user_id`;
         param = '';

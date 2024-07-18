@@ -55,7 +55,7 @@ const Navbar = ({ logout }) => {
   return (
     <nav className="navbar">
       <a href="#" className="navbar-brand">
-        Logo
+        CraftLink
       </a>
       <ul className="navbar-nav">
         <li>
