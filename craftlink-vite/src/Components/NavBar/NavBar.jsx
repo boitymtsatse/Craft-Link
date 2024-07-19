@@ -62,7 +62,7 @@ const Navbar = ({ logout }) => {
           <Link to="/home">Home</Link>
         </li>
         <li>
-          <a href="#">My Services</a>
+          <Link to="/services">My Services</Link>
         </li>
         <li>
           <Link to="/profile">Settings</Link>

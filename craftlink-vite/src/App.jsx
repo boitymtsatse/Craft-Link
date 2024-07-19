@@ -47,6 +47,7 @@ import Welcome from './Components/LandingPage/Welcome';
 import Homepage from './Components/HomePage/homePage';
 import SideBar from './Components/Profile/SideBar';
 import Delete from './Components/Profile/delete';
+import Services from './Components/ServicePage/Services';
 // New component for conditional rendering of Navbar
 const ConditionalNavbar = () => {
   const location = useLocation();
@@ -73,6 +74,7 @@ const App = () => {
           <Route path="/home" element={<Home/>}/>
           <Route path="/hire/:id" element={<Hire/>}/>
           <Route path="/delete" element={<Delete/>}/>
+          <Route path="/services" element={<Services/>}/>
           {/* Add other routes here */}
         </Routes>
       </div>
