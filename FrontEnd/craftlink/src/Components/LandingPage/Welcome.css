@@ -1,6 +1,7 @@
 .welcome{
     vertical-align: middle;
     text-align:center;
+    overflow: hidden;
 }
 
 .welcome button{
@@ -8,4 +9,6 @@
     border-radius: 10px;
     margin-left: 2%;
     box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.407);
+    width: 20%;
+
 }
