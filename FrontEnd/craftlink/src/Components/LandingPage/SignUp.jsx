@@ -225,6 +225,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormData from 'form-data'; // Import form-data
+import "./SignUp.css"
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -274,29 +275,29 @@ const SignUp = () => {
     }
 
     try {
-            const response = await fetch('http://localhost:3000/api', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                type: 'signUp',
-                id_number :  formData.id_number,
-                fname :  formData.fname,
-                surname :  formData.surname ,
-                dob :  formData.dob,
-                phone :  formData.phone ,
-                email :  formData.email ,
-                password :  formData.password ,
-                street_name :  formData.street_name ,
-                street_no :  formData.street_no ,
-                suburb :  formData.suburb ,
-                city :  formData.city ,
-                province:  formData.province,
-                postal_code :  formData.postal_code 
-              }),
-            });
-            console.log(response)
+      const response = await fetch('http://localhost:3000/api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'signUp',
+          id_number: formData.id_number,
+          fname: formData.fname,
+          surname: formData.surname,
+          dob: formData.dob,
+          phone: formData.phone,
+          email: formData.email,
+          password: formData.password,
+          street_name: formData.street_name,
+          street_no: formData.street_no,
+          suburb: formData.suburb,
+          city: formData.city,
+          province: formData.province,
+          postal_code: formData.postal_code,
+        }),
+      });
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -310,9 +311,9 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="form-container">
+      <form className="SForm" onSubmit={handleSubmit}>
+        <h2>Sign Up</h2>
         <div className="form-group">
           <label htmlFor="fname">First Name</label>
           <input
@@ -466,17 +467,10 @@ const SignUp = () => {
           />
         </div>
         <button type="submit">Sign Up</button>
+        {message && <p>{message}</p>}
       </form>
-      {message && <p>{message}</p>}
     </div>
   );
 };
 
 export default SignUp;
-
-
-
-
-
-
-
