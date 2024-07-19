@@ -93,7 +93,7 @@ function getUser(req, res) {
 }
 
 function deleteUser(req, res) {
-  const user_id = 11;
+  const user_id = 9;
   db.query('DELETE FROM User_Address WHERE User_ID = ?', [user_id], (error, results) => {
     if (error) {
       return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
@@ -249,15 +249,26 @@ function login(req, res) {
   });
 }
 
+// function history(req, res) {
+//   const user_id = 1;
+
+//   db.query('SELECT * FROM Activity WHERE User_ID = ?', [user_id], (error, results) => {
+//     if (error) {
+//       return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
+//     }
+//     res.json({ status: "success", timestamp: Date.now(), data: results });
+//   });
+// }
+
 function history(req, res) {
   const user_id = 2;
 
-  db.query('SELECT * FROM Activity WHERE User_ID = ?', [user_id], (error, results) => {
+  db.query('SELECT Service_title, Billing_Date, Amount FROM Billing INNER JOIN Service_Profile ON Billing.Service_ID=Service_Profile.Service_ID WHERE Billing.User_ID = ?', [user_id], (error, results) => {
     if (error) {
       return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
     }
-    res.json({ status: "success", timestamp: Date.now(), data: results });
-  });
+    res.json({ status: "success", timestamp: Date.now(), data: results });
+  });
 }
 
 // function signUp(req, res) {

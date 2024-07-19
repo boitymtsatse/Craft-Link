@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './profile.css'
+import './profile.css';
+import SideBar from "./SideBar";
+
 
 const UserInfoPage = () => {
   const [formData, setFormData] = useState({
@@ -167,8 +169,10 @@ const UserInfoPage = () => {
         </label>
         <button type="submit">Update</button>
       </form>
+      <SideBar/>
     </div>
   );
 };
 
 export default UserInfoPage;
+/* look */

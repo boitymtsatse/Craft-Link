@@ -1,0 +1,177 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Service Provider API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "A list of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The created user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/services": {
+      "get": {
+        "summary": "Get all services",
+        "responses": {
+          "200": {
+            "description": "A list of services",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceProfile"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new service",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceProfile"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The created service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceProfile"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "required": [
+          "First_Name",
+          "Last_Name",
+          "Date_of_Birth",
+          "ID_no",
+          "User_password",
+          "Phone_no"
+        ],
+        "properties": {
+          "User_ID": {
+            "type": "integer"
+          },
+          "First_Name": {
+            "type": "string"
+          },
+          "Last_Name": {
+            "type": "string"
+          },
+          "Date_of_Birth": {
+            "type": "string",
+            "format": "date"
+          },
+          "ID_no": {
+            "type": "string"
+          },
+          "User_password": {
+            "type": "string"
+          },
+          "Phone_no": {
+            "type": "string"
+          },
+          "Profile_Pic": {
+            "type": "string",
+            "format": "binary"
+          },
+          "Email": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      },
+      "ServiceProfile": {
+        "type": "object",
+        "required": [
+          "Service_title",
+          "Rating",
+          "User_ID"
+        ],
+        "properties": {
+          "Service_ID": {
+            "type": "integer"
+          },
+          "Service_title": {
+            "type": "string"
+          },
+          "Rating": {
+            "type": "integer"
+          },
+          "Service_Description": {
+            "type": "string"
+          },
+          "User_ID": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}
