@@ -1,13 +1,16 @@
 .welcome{
+    width:100vw;
+    height:100vh;
     vertical-align: middle;
     text-align:center;
 }
 
 .welcome button{
-    width: 5%;
+    width: 8%;
     height: 5%;
     background-color: rgb(144, 39, 242);
     border-radius: 10px;
     margin-left: 2%;
+    margin-right: 2%;
     box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.407);
 }

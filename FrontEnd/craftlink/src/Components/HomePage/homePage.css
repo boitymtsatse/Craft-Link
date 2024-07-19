@@ -51,7 +51,7 @@ html{
   background-repeat: no-repeat;
   background-position: calc(100% - 10px) center;
   background-size: 8%;
-  box-shadow: 2px 2px 80px rgba(31, 12, 67, 0.6);
+  box-shadow: 2px 2px 100px rgba(31, 12, 67, 0.6);
 }
 
 .searchBar::placeholder{
@@ -75,18 +75,12 @@ html{
   background-repeat: no-repeat;
   background-position: calc(100% - 10px) center;
   background-size: 6%;
-  box-shadow: 2px 2px 80px rgba(31, 12, 67,0.6);
+  box-shadow: 2px 2px 100px rgba(31, 12, 67,0.6);
 }
 
 .searches{
   display: flex;
   margin-top: 4%;
-  /* 
-  width: 100vw;
-  height: 10vh;
-  align-items: center;
-  /* border-radius: 30px; */
-  background-color: rgb(150, 93, 200)
 }
 
 #searchIcon{
@@ -114,7 +108,7 @@ html{
   flex-wrap: wrap; 
   width: 100%;
   padding: 20px;
-  background-color:  rgb(199, 195, 195);
+  background-color: white;
   box-shadow: 1px 2px 5px black;
 }
 

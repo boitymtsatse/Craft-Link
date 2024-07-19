@@ -6,20 +6,24 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [cityQuery, setCityQuery] = useState('');
   const [profiles, setProfiles] = useState([]);
+  const [showResult, setShowResult] = useState(''); // State variable for showResult
 
-  useEffect(() => {fetchProfiles();}, []);
+  useEffect(() => {
+    fetchProfiles();
+  }, []);
 
   const fetchProfiles = async () => {
     try {
       const response = await fetch('http://localhost:3001/api', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({type: 'getProfiles'}),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'getProfiles' }),
       });
       const result = await response.json();
       if (result.status === 'success') {
         console.log(result.data);
         setProfiles(result.data);
+        setShowResult('');
       } else {
         console.error('Error fetching profiles:', result.data);
       }
@@ -28,18 +32,21 @@ function App() {
     }
   };
 
-  let showResult = '';
-
   const fetchNearbyServices = async () => {
+    if (cityQuery === '') {
+      fetchProfiles();
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:3001/api', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({type: 'getNearby', location: cityQuery}),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'getNearby', location: cityQuery }),
       });
       const result = await response.json();
       if (result.status === 'success') {
-        showResult = `Showing result for ${cityQuery}`;
+        setShowResult(`Showing result for ${cityQuery}`);
         setProfiles(result.data);
       } else {
         console.error('Error fetching nearby services:', result.data);
@@ -50,15 +57,20 @@ function App() {
   };
 
   const searchServices = async () => {
+    if (searchQuery === '') {
+      fetchProfiles();
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:3001/api', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({type: 'searchBar', search: searchQuery}),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'searchBar', search: searchQuery }),
       });
       const result = await response.json();
       if (result.status === 'success') {
-        showResult = `Showing result for ${searchQuery}`;
+        setShowResult(`Showing result for ${searchQuery}`);
         setProfiles(result.data);
       } else {
         console.error('Error searching:', result.data);
@@ -84,34 +96,47 @@ function App() {
   return (
     <div className="homeBody">
       <div className="Logo">
-        <img src="https://cdn.discordapp.com/attachments/1254932815963881514/1263469742019051550/image.png?ex=669a5964&is=669907e4&hm=1c9c4778b660632320000f1fae1d237725e6b173c5dda3b92aff378e343d9cc9&"></img>
+        <img src="https://cdn.discordapp.com/attachments/1254932815963881514/1263469742019051550/image.png?ex=669a5964&is=669907e4&hm=1c9c4778b660632320000f1fae1d237725e6b173c5dda3b92aff378e343d9cc9&" alt="Logo" />
         <p>A platform for freelancers and semi-skilled labours to unleash their potential </p>
       </div>
-      <br/><br/>
+      <br /><br />
       <div className="searches">
-        <div className='searchDiv' onChange={searchServices}>
+        <div className='searchDiv'>
           <input
             id="searchBar"
             placeholder="Search for services anywhere"
             className="searchBar"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              if (e.target.value === '') {
+                fetchProfiles();
+              } else {
+                searchServices();
+              }
+            }}
           />
         </div>
-        {/* <p id="cityPrompt">Enter your city to find people near you!</p> */}
-        <div onChange={fetchNearbyServices}>
+        <div>
           <input
             id="cityInput"
             placeholder="Enter your city to find people near you!"
             className="cityInput"
             value={cityQuery}
-            onChange={(e) => setCityQuery(e.target.value)}
+            onChange={(e) => {
+              setCityQuery(e.target.value);
+              if (e.target.value === '') {
+                fetchProfiles();
+              } else {
+                fetchNearbyServices();
+              }
+            }}
           />
         </div>
       </div>
-      <br/><br/><br/>
+      <br /><br /><br />
       <div className="resultsBar">
-        <h2>Showing results for your city</h2>
+        <h2>{showResult}</h2> {/* Display showResult */}
       </div>
       <div className="profDiv">
         {profiles.map((profile, index) => (
@@ -125,9 +150,9 @@ function App() {
                 {profile.rate && <><br /><br />Rate per hour: {profile.rate}</>}
                 {profile.contact && <><br /><br />Contact: {profile.contact}</>}
                 {profile.experience && <><br /><br />Experience: {profile.experience}</>}
-                <br/><br/>Rate: R{profile.Rate_per_hour}/h
-                <br/><br/>Rating: {renderStars(parseInt(profile.Rating))} ({profile.Rating})
-                <br/>
+                <br /><br />Rate: R{profile.Rate_per_hour}/h
+                <br /><br />Rating: {renderStars(parseInt(profile.Rating))} ({profile.Rating})
+                <br />
                 <button onClick={() => handleHire(profile.User_ID)} className="hire">
                   HIRE
                 </button>
