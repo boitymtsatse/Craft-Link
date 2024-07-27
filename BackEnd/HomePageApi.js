@@ -56,7 +56,7 @@ app.post('/api', (req, res) => {
     } else if (data.type === 'searchBar' && data.search) {
 
         param = `%${data.search}%`;
-        sql = `SELECT User.First_Name, Last_Name, Profile_pic, Service_Profile.*
+        sql = `SELECT User.First_Name, Last_Name, Profile_Pic, Service_Profile.*
                 FROM User 
                 JOIN Service_Profile 
                 ON User.user_id = Service_Profile.user_id
@@ -68,7 +68,7 @@ app.post('/api', (req, res) => {
         sql = `SELECT 
             User.First_Name, 
             User.Last_Name, 
-            User.Profile_pic, 
+            User.Profile_Pic, 
             Service_Profile.*, 
             User_Address.*
             FROM 
