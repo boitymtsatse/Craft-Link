@@ -1,14 +1,16 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const mysql = require('mysql');
-const cors = require('cors'); // Uncomment this line if you need CORS
+const cors = require('cors'); 
+
+
 
 const app = express();
 const port = 3000;
 app.use(cors());
-app.use(bodyParser.json()); // Make sure this is above your routes
+// app.use(bodyParser.json());
+
 
 app.use(session({
   secret: 'your_secret_key',
@@ -31,9 +33,12 @@ db.connect((err) => {
   console.log('Connected to database');
 });
 
+app.use(bodyParser.json({ limit: '50mb' })); 
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+
 app.post('/api',cors(), (req, res) => {
   
-  
+
   const { type } = req.body;
 
   if (!type) {
@@ -78,7 +83,7 @@ app.post('/api',cors(), (req, res) => {
 
 function getUser(req, res) {
   // Assuming the user_id is hardcoded for now
-  const user_id = 13;
+  const user_id =1;
 
   db.query('SELECT * FROM User INNER JOIN User_Address ON User.User_ID=User_Address.User_ID WHERE User.User_ID = ?', [user_id], (error, results) => {
     if (error) {
@@ -93,7 +98,7 @@ function getUser(req, res) {
 }
 
 function deleteUser(req, res) {
-  const user_id = 9;
+  const user_id = 17;
   db.query('DELETE FROM User_Address WHERE User_ID = ?', [user_id], (error, results) => {
     if (error) {
       return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
@@ -164,9 +169,9 @@ function getReview(req, res) {
 }
 
 function updateUser(req, res) {
-  const user_id = 13; // Assuming user_id is hardcoded for now
-  const { phone, email, street_name, street_no, suburb, city, province, postal_code } = req.body;
-
+  const user_id = 17; // Assuming user_id is hardcoded for now
+  const { phone, email, street_name, street_no, suburb, city, province, postal_code,pp } = req.body;
+  //console.log(pp);
   if (phone.length > 10 || !/^\d+$/.test(phone)) {
     return res.status(400).json({ status: "error", timestamp: Date.now(), data: "phone number is not all digits" });
   }
@@ -186,7 +191,7 @@ function updateUser(req, res) {
       return res.status(400).json({ status: "error", timestamp: Date.now(), data: "email already in use" });
     }
 
-    db.query('UPDATE User SET Phone_no = ?, Email = ? WHERE User_ID = ?', [phone, email, user_id], (error) => {
+    db.query('UPDATE User SET Phone_no = ?, Email = ?, Profile_Pic = ? WHERE User_ID = ?', [phone, email,pp, user_id], (error) => {
       if (error) {
         return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
       }
@@ -249,26 +254,15 @@ function login(req, res) {
   });
 }
 
-// function history(req, res) {
-//   const user_id = 1;
-
-//   db.query('SELECT * FROM Activity WHERE User_ID = ?', [user_id], (error, results) => {
-//     if (error) {
-//       return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
-//     }
-//     res.json({ status: "success", timestamp: Date.now(), data: results });
-//   });
-// }
-
 function history(req, res) {
   const user_id = 2;
 
-  db.query('SELECT Service_title, Billing_Date, Amount FROM Billing INNER JOIN Service_Profile ON Billing.Service_ID=Service_Profile.Service_ID WHERE Billing.User_ID = ?', [user_id], (error, results) => {
+  db.query('SELECT Service_title, Billing_Date FROM Billing INNER JOIN Service_Profile ON Billing.Service_ID=Service_Profile.Service_ID WHERE Billing.User_ID = ?', [user_id], (error, results) => {
     if (error) {
       return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
     }
-    res.json({ status: "success", timestamp: Date.now(), data: results });
-  });
+    res.json({ status: "success", timestamp: Date.now(), data: results });
+  });
 }
 
 // function signUp(req, res) {
@@ -335,45 +329,45 @@ function signUp(req, res) {
 
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!emailPattern.test(email)) {
-    return res.status(400).json({ status: "error", timestamp: Date.now(), data: "invalid email address" });
+    return res.status(401).json({ status: "error", timestamp: Date.now(), data: "invalid email address" });
   }
 
   // Check if ID number is already in use////valid???
   db.query('SELECT COUNT(*) AS count FROM User WHERE ID_no =?', [id_number], (error, results) => {
     if (error) {
-      return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
+      return res.status(501).json({ status: "failure", timestamp: Date.now(), data: error.message });
     }
     if (results[0].count > 0) {
-      return res.status(400).json({ status: "error", timestamp: Date.now(), data: "ID number already in use" });
+      return res.status(402).json({ status: "error", timestamp: Date.now(), data: "ID number already in use" });
     }
 
     // Check if email is already in use
     db.query('SELECT COUNT(*) AS count FROM User WHERE Email =?', [email], (error, results) => {
       if (error) {
-        return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
+        return res.status(502).json({ status: "failure", timestamp: Date.now(), data: error.message });
       }
       if (results[0].count > 0) {
-        return res.status(400).json({ status: "error", timestamp: Date.now(), data: "email already in use" });
+        return res.status(403).json({ status: "error", timestamp: Date.now(), data: "email already in use" });
       }
 
       // Check if phone number is already in use
       db.query('SELECT COUNT(*) AS count FROM User WHERE Phone_no =?', [phone], (error, results) => {
         if (error) {
-          return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
+          return res.status(503).json({ status: "failure", timestamp: Date.now(), data: error.message });
         }
         if (results[0].count > 0) {
-          return res.status(400).json({ status: "error", timestamp: Date.now(), data: "phone number already in use" });
+          return res.status(404).json({ status: "error", timestamp: Date.now(), data: "phone number already in use" });
         }
 
         // Proceed with user creation
         const hashedPassword = require('crypto').createHash('sha256').update(password).digest('hex');
 
-        const sqlUser = 'INSERT INTO User (ID_no, First_Name, Last_Name, Date_of_Birth, Phone_no, Email, User_password,Profile_Pic) VALUES (?,?,?,?,?,?,?,?)';
-        const userValues = [id_number, fname, surname, dob, phone, email, hashedPassword,pp];
-
+        const sqlUser = 'INSERT INTO User (ID_no, First_Name, Last_Name, Date_of_Birth, Phone_no,Profile_Pic, Email, User_password) VALUES (?,?,?,?,?,?,?,?)';
+        const userValues = [id_number, fname, surname, dob, phone,pp, email, hashedPassword];
+        
         db.query(sqlUser, userValues, (error, results) => {
           if (error) {
-            return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
+            return res.status(504).json({ status: "failure", timestamp: Date.now(), data: error.message });
           }
 
           const userId = results.insertId;
@@ -382,7 +376,7 @@ function signUp(req, res) {
 
           db.query(sqlAddress, addressValues, (error) => {
             if (error) {
-              return res.status(500).json({ status: "failure", timestamp: Date.now(), data: error.message });
+              return res.status(505).json({ status: "failure", timestamp: Date.now(), data: error.message });
             }
             res.json({ status: "success", timestamp: Date.now(), data: "user signed up successfully" });
           });
@@ -396,5 +390,5 @@ function signUp(req, res) {
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
