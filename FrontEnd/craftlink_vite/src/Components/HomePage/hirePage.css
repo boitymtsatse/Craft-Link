@@ -1,0 +1,37 @@
+/* body{
+  background-color: #b967fc;
+} */
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: justify;
+  padding-bottom: 5%;
+  padding-right: 2%;
+  margin-top: 3%;
+  float: right;
+  margin-right: 5%;
+  height: 75%;
+  width: 60%;
+  vertical-align: middle;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin:1% 20%;
+  display: flex;
+  vertical-align: middle;
+  background-color: #b967fc;
+}
+  
+  .details h2 {
+    text-align: center;
+    color: rgb(24, 0, 58);
+  }
+  
+  .details p {
+    text-align: center;
+  }
+  
+  
